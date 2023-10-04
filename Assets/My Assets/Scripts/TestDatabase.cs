@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class DatabaseManager : MonoBehaviour
+public class TestDatabase : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _inputName;
     [SerializeField] private TMP_InputField _inputPoints;
