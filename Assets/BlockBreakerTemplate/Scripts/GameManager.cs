@@ -47,14 +47,23 @@ public class GameManager : MonoBehaviour
 	{
 		int colorId = 0;					//'colorId' is used to tell which color is currently being used on the bricks. Increased by 1 every row of bricks
 
-		for(int y = 0; y < brickCountY; y++){															
-			for(int x = -(brickCountX / 2); x < (brickCountX / 2); x++){
-				Vector3 pos = new Vector3(0.8f + (x * 1.6f), 1 + (y * 0.4f), 0);						//The 'pos' variable is where the brick will spawn at
-				GameObject brick = Instantiate(brickPrefab, pos, Quaternion.identity) as GameObject;	//Creates a new brick game object at the 'pos' value
-				brick.GetComponent<Brick>().manager = this;												//Gets the 'Brick' component of the game object and sets its 'manager' variable to this the GameManager
-				brick.GetComponent<SpriteRenderer>().color = colors[colorId];							//Gets the 'SpriteRenderer' component of the brick object and sets the color
-				bricks.Add(brick);																		//Adds the new brick object to the 'bricks' list
+		for(int y = 0; y < brickCountY; y++){
+			if (brickCountX % 2 == 0)       
+			{
+				for (int x = -(brickCountX / 2); x < (brickCountX / 2); x++)
+				{
+					Vector3 pos = new Vector3(0.8f + (x * 1.6f), 1 + (y * 0.4f), 0);                        //The 'pos' variable is where the brick will spawn at
+                    CreateBrick(pos, colorId);
+                }
 			}
+            else                            //Support to odd numbers
+            {
+                for (int x = -brickCountX; x < brickCountX; x+=2)
+                {
+                    Vector3 pos = new Vector3(0.8f + (x * 0.8f), 1 + (y * 0.4f), 0);                        //The 'pos' variable is where the brick will spawn at
+                    CreateBrick(pos, colorId);
+                }
+            }
 
 			colorId++;						//Increases the 'colorId' by 1 as a new row is about to be made
 
@@ -62,8 +71,16 @@ public class GameManager : MonoBehaviour
 				colorId = 0;
 		}
 
-		ball.GetComponent<Ball>().ResetBall();	//Gets the 'Ball' component of the ball game object and calls the 'ResetBall()' function to set the ball in the middle of the screen
-	}
+		ball.GetComponent<Ball>().ResetBall();  //Gets the 'Ball' component of the ball game object and calls the 'ResetBall()' function to set the ball in the middle of the screen
+    }
+
+    private void CreateBrick(Vector3 pos, int colorId)
+	{
+        GameObject brick = Instantiate(brickPrefab, pos, Quaternion.identity) as GameObject;    //Creates a new brick game object at the 'pos' value
+        brick.GetComponent<Brick>().manager = this;                                             //Gets the 'Brick' component of the game object and sets its 'manager' variable to this the GameManager
+        brick.GetComponent<SpriteRenderer>().color = colors[colorId];                           //Gets the 'SpriteRenderer' component of the brick object and sets the color
+        bricks.Add(brick);
+    }
 
 	//Called when there is no bricks left and the player has won
 	public void WinGame ()
