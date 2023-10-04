@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "542791377586",
+    "firebase_url": "https://communixchallenge-default-rtdb.firebaseio.com",
     "project_id": "communixchallenge",
     "storage_bucket": "communixchallenge.appspot.com"
   },
