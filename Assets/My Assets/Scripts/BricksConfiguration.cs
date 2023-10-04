@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class OptionsMenu : MonoBehaviour
+public class BricksConfiguration : MonoBehaviour
 {
     [SerializeField] private float _minRows, _maxRows, _minCols, _maxCols;
     [SerializeField] private TMP_Text _rowsAmount, _colsAmount;
