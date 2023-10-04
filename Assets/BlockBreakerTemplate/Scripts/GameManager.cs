@@ -24,11 +24,6 @@ public class GameManager : MonoBehaviour
 
 	public Color[] colors;			//The color array of the bricks. This can be modified to create different brick color patterns
 
-	void Start ()
-	{
-		StartGame(); //Starts the game by setting values and spawning bricks
-	}
-
 	//Called when the game starts
 	public void StartGame ()
 	{

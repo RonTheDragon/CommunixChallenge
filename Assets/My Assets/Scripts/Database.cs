@@ -1,59 +1,23 @@
 using Firebase.Database;
+using System;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
-using System.Collections;
-using System;
 
-public class DatabaseManager : MonoBehaviour
+public class Database
 {
-    [SerializeField] private OptionsMenu _optionsMenu;
     private string _userID;
     private DatabaseReference _dbReference;
 
-    void Start()
+    public Database()
     {
         _userID = SystemInfo.deviceUniqueIdentifier;
         _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        StartCoroutine(IsUserExist());
     }
 
-    private IEnumerator IsUserExist()
+    public Task<DataSnapshot> GetUserDataSnapshot()
     {
-        Task<DataSnapshot> userNameDataTask = _dbReference.Child("users").Child(_userID).GetValueAsync();
-        yield return new WaitUntil(() => userNameDataTask.IsCompleted);
-
-        if (userNameDataTask.Exception != null)
-        {
-            // Handle errors
-            Debug.LogError("Error retrieving user data: " + userNameDataTask.Exception);
-            UserNotExist();
-        }
-        else
-        {
-            // Check if data exists
-            if (userNameDataTask.Result.Exists)
-            {
-                UserAlreadyExist();
-            }
-            else
-            {
-                UserNotExist();
-            }
-        }
-    }
-
-
-    private void UserAlreadyExist()
-    {
-        StartCoroutine(GetUser((User user) =>
-        {
-            _optionsMenu.UpdateOptionsFromUser(user);
-        }));
-    }
-
-    private void UserNotExist()
-    {
-        _optionsMenu.RevertToDefault();
+        return _dbReference.Child("users").Child(_userID).GetValueAsync();
     }
 
     public void SetUser(User user)
@@ -94,5 +58,4 @@ public class DatabaseManager : MonoBehaviour
             onCallBack.Invoke(null);
         }
     }
-
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OptionsMenu : MonoBehaviour
 {
-    [SerializeField] private DatabaseManager _databaseManager;
+    [SerializeField] private DatabaseMenuManager _databaseManager;
     [SerializeField] private SOConfiguration _defaultConfiguration;
     [SerializeField] private BricksConfiguration _brickConfiguration;
 
@@ -14,7 +14,7 @@ public class OptionsMenu : MonoBehaviour
         ApplyConfiguration();
     }
 
-    public void UpdateOptionsFromUser(User user)
+    public void LoadConfigurationFromUser(User user)
     {
         if (user != null)
         {
@@ -26,6 +26,6 @@ public class OptionsMenu : MonoBehaviour
     public void ApplyConfiguration()
     {
         User user = new User(_brickConfiguration.GetRows(), _brickConfiguration.GetCols());
-        _databaseManager.SetUser(user);
+        _databaseManager.GetDatabase().SetUser(user);
     }
 }
