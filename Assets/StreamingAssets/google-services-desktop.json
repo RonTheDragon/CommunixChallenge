@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "542791377586",
+    "project_id": "communixchallenge",
+    "storage_bucket": "communixchallenge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542791377586:android:9d141d2e33ed5138b21fab",
+        "android_client_info": {
+          "package_name": "com.communix.firebasedb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARRLiIL_myCRSbi5x0kfoTVyZ_N_3qSt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
