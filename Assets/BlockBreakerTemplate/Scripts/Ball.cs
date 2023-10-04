@@ -35,8 +35,9 @@ public class Ball : MonoBehaviour
 			goingDown = true;										//Sets goingDown to true as the ball is now moving down
 		}
 		if(transform.position.y < -5){								//Has the ball gone down past the paddle
-			ResetBall();											//Call the 'ResetBall()' function to reset the ball in the middle of the screen
-		}
+			ResetBall();                                            //Call the 'ResetBall()' function to reset the ball in the middle of the screen
+            manager.LiveLost();									    //Calls the 'LiveLost()' function in the GameManager function
+        }
 	}
 
 	//Called when the ball needs to change direction (hit paddle, hit brick). The target parameter is the position of the object that the ball has hit
@@ -70,7 +71,6 @@ public class Ball : MonoBehaviour
 		transform.position = Vector3.zero;		//Sets the ball position to the middle of the screen
 		direction = Vector2.down;				//Sets the ball's direction to go down
 		StartCoroutine("ResetBallWaiter");		//Starts the 'ResetBallWaiter' coroutine to have the ball wait 1 second before moving
-		manager.LiveLost();						//Calls the 'LiveLost()' function in the GameManager function
 	}
 
 	//Called to make the ball wait a second before moving. Called when the ball dies and is respawned at the middle of the screen

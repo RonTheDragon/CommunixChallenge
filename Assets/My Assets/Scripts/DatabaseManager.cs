@@ -20,7 +20,6 @@ public class DatabaseManager : MonoBehaviour
     void Start()
     {
         _userID = SystemInfo.deviceUniqueIdentifier;
-        Debug.Log(_userID);
         _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
