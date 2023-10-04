@@ -1,11 +1,10 @@
 public class User
 {
-    public string name;
-    public int points;
+    public int Rows, Columns;
 
-    public User(string name, int points)
+    public User(int rows, int columns)
     {
-        this.name = name;
-        this.points = points;
+        this.Rows = rows;
+        this.Columns = columns;
     }
 }

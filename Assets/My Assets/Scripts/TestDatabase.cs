@@ -25,7 +25,7 @@ public class TestDatabase : MonoBehaviour
 
     public void CreateUser()
     {
-        User newUser = new User(_inputName.text,int.Parse(_inputPoints.text));
+        User newUser = new User(int.Parse(_inputName.text), int.Parse(_inputPoints.text));
         string json = JsonUtility.ToJson(newUser);
 
         _dbReference.Child("users").Child(_userID).SetRawJsonValueAsync(json);
