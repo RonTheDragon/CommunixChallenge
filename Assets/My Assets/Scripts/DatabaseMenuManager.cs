@@ -3,14 +3,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections;
 
-public class DatabaseMenuManager : MonoBehaviour
+public class DatabaseMenuManager : DatabaseManager
 {
     [SerializeField] private OptionsMenu _optionsMenu;
-    private Database _database;
 
-    void Start()
+    new protected void Start()
     {
-        _database = new Database();
+        base.Start();
         StartCoroutine(IsUserExist());
     }
 

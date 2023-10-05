@@ -1,13 +1,12 @@
 using UnityEngine;
 
-public class DatabaseGameManager : MonoBehaviour
+public class DatabaseGameManager : DatabaseManager
 {
     [SerializeField] private GameManager _gameManager;
-    private Database _database;
     
-    void Start()
+    new protected void Start()
     {
-        _database = new Database();
+        base.Start();
         StartCoroutine(_database.GetUser((User user) =>
         {
             UpdateGameConfiguration(user);
