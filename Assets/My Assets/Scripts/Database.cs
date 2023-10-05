@@ -17,9 +17,29 @@ public class Database
         _userDbReference = _dbReference.Child("users").Child(_userID);
     }
 
-    public Task<DataSnapshot> GetUserDataSnapshot()
+    public IEnumerator IsUserExist(Action<bool> onCallBack)
     {
-        return _userDbReference.GetValueAsync();
+        Task<DataSnapshot> userNameDataTask = _userDbReference.GetValueAsync();
+        yield return new WaitUntil(() => userNameDataTask.IsCompleted);
+
+        if (userNameDataTask.Exception != null)
+        {
+            // Handle errors
+            Debug.LogError("Error retrieving user data: " + userNameDataTask.Exception);
+            onCallBack.Invoke(false);
+        }
+        else
+        {
+            // Check if data exists
+            if (userNameDataTask.Result.Exists)
+            {
+                onCallBack.Invoke(true);
+            }
+            else
+            {
+                onCallBack.Invoke(false);
+            }
+        }
     }
 
     public void SetUser(User user)

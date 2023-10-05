@@ -10,24 +10,14 @@ public class DatabaseMenuManager : DatabaseManager
     new protected void Start()
     {
         base.Start();
-        StartCoroutine(IsUserExist());
+        CheckIfUserExist();
     }
 
-    private IEnumerator IsUserExist()
+    private void CheckIfUserExist()
     {
-        Task<DataSnapshot> userNameDataTask = _database.GetUserDataSnapshot();
-        yield return new WaitUntil(() => userNameDataTask.IsCompleted);
-
-        if (userNameDataTask.Exception != null)
+        StartCoroutine(_database.IsUserExist((bool userExists) =>
         {
-            // Handle errors
-            Debug.LogError("Error retrieving user data: " + userNameDataTask.Exception);
-            UserNotExist();
-        }
-        else
-        {
-            // Check if data exists
-            if (userNameDataTask.Result.Exists)
+            if (userExists)
             {
                 UserAlreadyExist();
             }
@@ -35,7 +25,7 @@ public class DatabaseMenuManager : DatabaseManager
             {
                 UserNotExist();
             }
-        }
+        }));
     }
 
 
@@ -50,10 +40,5 @@ public class DatabaseMenuManager : DatabaseManager
     private void UserNotExist()
     {
         _optionsMenu.RevertToDefault();
-    }
-
-    public Database GetDatabase()
-    {
-        return _database;
     }
 }

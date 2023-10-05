@@ -10,4 +10,9 @@ public class DatabaseManager : MonoBehaviour
     {
         _database = new Database();
     }
+
+    public Database GetDatabase()
+    {
+        return _database;
+    }
 }
