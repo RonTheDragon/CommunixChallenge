@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DatabaseManager : MonoBehaviour
+public abstract class DatabaseManager : MonoBehaviour
 {
     protected Database _database;
 
