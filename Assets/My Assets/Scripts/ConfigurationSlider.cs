@@ -9,7 +9,7 @@ public class ConfigurationSlider
     [SerializeField] private float MaxValue;
     [SerializeField] private TMP_Text AmountText;
     [SerializeField] private Slider SliderUI;
-    [SerializeField] private int SliderValue;
+    private int SliderValue;
 
     public void InitializeSlider()
     {
