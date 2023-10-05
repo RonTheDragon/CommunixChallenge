@@ -1,14 +1,10 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System.Collections;
 
 public class BricksConfiguration : MonoBehaviour
 {
-    [SerializeField] private float _minRows, _maxRows, _minCols, _maxCols;
-    [SerializeField] private TMP_Text _rowsAmountText, _colsAmountText;
-    [SerializeField] private Slider _rowsSlider, _colsSlider;
-    private int _rows, _cols;
+    [SerializeField] private ConfigurationSlider _rowsSlider;
+    [SerializeField] private ConfigurationSlider _colsSlider;
 
     private void Start()
     {
@@ -17,36 +13,37 @@ public class BricksConfiguration : MonoBehaviour
 
     private void InitializeRowsAndCols()
     {
-        _rowsSlider.minValue = _minRows;
-        _rowsSlider.maxValue = _maxRows;
-        _colsSlider.minValue = _minCols;
-        _colsSlider.maxValue = _maxCols;
+        _rowsSlider?.InitializeSlider();
+        _colsSlider?.InitializeSlider();
+    }
+    public int GetRows()
+    {
+        return _rowsSlider.GetValue();
     }
 
-    public void OnRowsValueChanged(float value)
+    public int GetCols()
     {
-        _rowsAmountText.text = value.ToString();
-        _rows = (int)value;
+        return _colsSlider.GetValue();
     }
 
-    public void OnColsValueChanged(float value)
+    public void SetRows(int newValue)
     {
-        _colsAmountText.text = value.ToString();
-        _cols = (int)value;
+        _rowsSlider?.SetValue(newValue);
     }
 
-    public void SetRows(int value)
+    public void SetCols(int newValue)
     {
-        _rowsSlider.value = value;
-        _rowsAmountText.text = value.ToString();
-        _rows = value;
+        _colsSlider?.SetValue(newValue);
     }
 
-    public void SetCols(int value)
+    public void OnRowsValueChanged(float newValue)
     {
-        _colsSlider.value = value;
-        _colsAmountText.text = value.ToString();
-        _cols = value;
+        _rowsSlider?.OnValueChanged(newValue);
+    }
+
+    public void OnColsValueChanged(float newValue)
+    {
+        _colsSlider?.OnValueChanged(newValue);
     }
 
     private void OnEnable()
@@ -57,17 +54,7 @@ public class BricksConfiguration : MonoBehaviour
     private IEnumerator UpdateSlidersWithDelay()
     {
         yield return null;
-        _rowsSlider.value = _rows;
-        _colsSlider.value = _cols;
-    }
-
-    public int GetRows()
-    {
-        return _rows;
-    }
-
-    public int GetCols()
-    {
-        return _cols;
-    }
+        _rowsSlider?.UpdateSliderUI();
+        _colsSlider?.UpdateSliderUI();
+    }  
 }

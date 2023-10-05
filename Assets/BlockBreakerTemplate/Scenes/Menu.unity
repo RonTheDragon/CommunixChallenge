@@ -615,14 +615,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8098dd1bd9d196a4eb6d26c266c29770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minRows: 1
-  _maxRows: 5
-  _minCols: 1
-  _maxCols: 5
-  _rowsAmountText: {fileID: 29578131}
-  _colsAmountText: {fileID: 1918259873}
-  _rowsSlider: {fileID: 463525330}
-  _colsSlider: {fileID: 783215547}
+  _rowsSlider:
+    MinValue: 1
+    MaxValue: 5
+    AmountText: {fileID: 29578131}
+    SliderUI: {fileID: 463525330}
+    SliderValue: 0
+  _colsSlider:
+    MinValue: 1
+    MaxValue: 5
+    AmountText: {fileID: 1918259873}
+    SliderUI: {fileID: 783215547}
+    SliderValue: 0
 --- !u!114 &72355177
 MonoBehaviour:
   m_ObjectHideFlags: 0
