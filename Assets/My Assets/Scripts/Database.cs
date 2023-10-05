@@ -50,26 +50,24 @@ public class Database
 
     public IEnumerator GetUser(Action<User> onCallBack)
     {
-        Task<DataSnapshot> RowsDataTask = _userDbReference.Child("Rows").GetValueAsync();
-        Task<DataSnapshot> ColsDataTask = _userDbReference.Child("Columns").GetValueAsync();
+        Task<DataSnapshot> UserDataTask = _userDbReference.GetValueAsync();
 
-        yield return new WaitUntil(() => RowsDataTask.IsCompleted && ColsDataTask.IsCompleted);
+        yield return new WaitUntil(() => UserDataTask.IsCompleted);
 
-        if (RowsDataTask.Exception != null || ColsDataTask.Exception != null)
+        if (UserDataTask.Exception != null)
         {
-            Debug.LogError("Error retrieving data from Firebase: " + RowsDataTask.Exception + " | " + ColsDataTask.Exception);
+            Debug.LogError("Error retrieving data from Firebase: " + UserDataTask.Exception);
             onCallBack.Invoke(null);
             yield break; // exit the coroutine on error
         }
 
         try
         {
-            // Assuming Rows and Columns are integers, convert the data
-            int rows = int.Parse(RowsDataTask.Result.Value.ToString());
-            int columns = int.Parse(ColsDataTask.Result.Value.ToString());
+            // Assuming the data is stored as a JSON string
+            string jsonData = UserDataTask.Result.GetRawJsonValue();
 
-            // Create a User object with the retrieved data
-            User user = new User(rows, columns);
+            // Deserialize the JSON string into a User object
+            User user = JsonUtility.FromJson<User>(jsonData);
 
             // Invoke the callback with the User object
             onCallBack.Invoke(user);
@@ -80,4 +78,5 @@ public class Database
             onCallBack.Invoke(null);
         }
     }
+
 }

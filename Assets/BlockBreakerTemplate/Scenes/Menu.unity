@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minRows: 1
-  _maxRows: 3
+  _maxRows: 5
   _minCols: 1
   _maxCols: 5
   _rowsAmountText: {fileID: 29578131}

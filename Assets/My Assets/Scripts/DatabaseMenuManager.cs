@@ -1,7 +1,4 @@
-using Firebase.Database;
-using System.Threading.Tasks;
 using UnityEngine;
-using System.Collections;
 
 public class DatabaseMenuManager : DatabaseManager
 {
