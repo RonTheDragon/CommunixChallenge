@@ -8,8 +8,8 @@ public class OptionsMenu : MonoBehaviour
 
     public void RevertToDefault()
     {
-        _brickConfiguration.SetRows(_defaultConfiguration.Rows);
-        _brickConfiguration.SetCols(_defaultConfiguration.Columns);
+        _brickConfiguration.SetRows(_defaultConfiguration.ScriptableUser.Rows);
+        _brickConfiguration.SetCols(_defaultConfiguration.ScriptableUser.Columns);
 
         ApplyConfiguration();
     }

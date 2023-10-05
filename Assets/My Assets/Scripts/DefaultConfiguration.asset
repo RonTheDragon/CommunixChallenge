@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0366fadb609331743ae4b2e9cc0b06e5, type: 3}
   m_Name: DefaultConfiguration
   m_EditorClassIdentifier: 
-  Rows: 2
-  Columns: 1
+  ScriptableUser:
+    Rows: 2
+    Columns: 1

@@ -1,3 +1,4 @@
+[System.Serializable]
 public class User
 {
     public int Rows, Columns;
