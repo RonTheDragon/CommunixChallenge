@@ -3,13 +3,14 @@ using System.Collections;
 
 public class Ball : MonoBehaviour 
 {
-	public float speed;				//The amount of units that the ball will move each second
-	public float maxSpeed;			//The maximum speed that the ball can travel at
-	public Vector2 direction;		//The Vector2 direction that the ball will move in (eg: diagonal = Vector2(1, 1))
-	public Rigidbody2D rig;			//The ball's Rigidbody 2D component
-	public GameManager manager;		//The GameManager
-	public bool goingLeft;			//Set to true when the ball is going left
-	public bool goingDown;			//Set to true xwhen the ball is going down
+	public float InitialSpeed = 200; //The Initial Speed of the ball
+    public float speed;				 //The amount of units that the ball will move each second
+	public float maxSpeed;			 //The maximum speed that the ball can travel at
+	public Vector2 direction;		 //The Vector2 direction that the ball will move in (eg: diagonal = Vector2(1, 1))
+	public Rigidbody2D rig;			 //The ball's Rigidbody 2D component
+	public GameManager manager;		 //The GameManager
+	public bool goingLeft;			 //Set to true when the ball is going left
+	public bool goingDown;			 //Set to true xwhen the ball is going down
 
 	void Start ()
 	{
@@ -78,6 +79,6 @@ public class Ball : MonoBehaviour
 	{
 		speed = 0;
 		yield return new WaitForSeconds(1.0f);	//Wait 1 second
-		speed = 200;
+		speed = InitialSpeed;
 	}
 }

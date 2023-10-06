@@ -7,6 +7,7 @@ public class DatabaseMenuManager : DatabaseManager
     new protected void Start()
     {
         base.Start();
+        _optionsMenu.InitializeOptionsMenu();
         CheckIfUserExist();
     }
 

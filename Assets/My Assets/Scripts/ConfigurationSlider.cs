@@ -2,14 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class ConfigurationSlider
+public abstract class ConfigurationSlider<T> : ISlider
 {
     [SerializeField] private float MinValue;
     [SerializeField] private float MaxValue;
-    [SerializeField] private TMP_Text AmountText;
-    [SerializeField] private Slider SliderUI;
-    private int SliderValue;
+    [SerializeField] protected TMP_Text AmountText;
+    [SerializeField] protected Slider SliderUI;
+    protected T SliderValue;
 
     public void InitializeSlider()
     {
@@ -17,25 +16,14 @@ public class ConfigurationSlider
         SliderUI.maxValue = MaxValue;
     }
 
-    public int GetValue()
+    public T GetValue()
     {
         return SliderValue;
     }
 
-    public void SetValue(int newValue)
-    {
-        SliderUI.value = newValue;
-        OnValueChanged(newValue);
-    }
+    public abstract void OnValueChanged(float newValue);
 
-    public void OnValueChanged(float newValue)
-    {
-        AmountText.text = newValue.ToString();
-        SliderValue = (int)newValue;
-    }
+    public abstract void SetValue(T newValue);
 
-    public void UpdateSliderUI()
-    {
-        SliderUI.value = SliderValue;
-    }
+    public abstract void UpdateSliderUI();
 }

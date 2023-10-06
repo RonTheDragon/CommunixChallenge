@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
 	public void StartGame ()
 	{
 		score = 0;
-		lives = 3;
 		gameOver = false;
 		wonGame = false;
         paddle.SetActive(true);

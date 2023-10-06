@@ -15,3 +15,6 @@ MonoBehaviour:
   ScriptableUser:
     Rows: 2
     Columns: 1
+    Lives: 3
+    PlayerSpeed: 250
+    BallSpeed: 200
