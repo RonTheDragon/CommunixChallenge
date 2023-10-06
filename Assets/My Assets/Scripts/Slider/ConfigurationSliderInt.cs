@@ -11,7 +11,7 @@ public class ConfigurationSliderInt : ConfigurationSlider<int>
     {
         AmountText.text = newValue.ToString();
         SliderValue = newValue;
-        SliderUI.value = newValue;
+        UpdateSliderUI();
     }
 
     public override void UpdateSliderUI()
